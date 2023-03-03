@@ -1,5 +1,5 @@
 <script setup lang="ts"></script>
 
 <template>
-  <main></main>
+  <h1 class="heading-1">Добро пожаловать в наш UI Kit</h1>
 </template>

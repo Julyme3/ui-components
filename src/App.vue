@@ -1,79 +1,60 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
+import { ref } from 'vue'
+import { RouterView } from 'vue-router'
+import MainHeader from '@/components/layout/header/Header.vue'
+import Sidebar from '@/components/layout/sidebar/Sidebar.vue'
+
+const sidebarOpen = ref(true)
+const toggleMenu = () => {
+  sidebarOpen.value = !sidebarOpen.value
+}
 </script>
 
 <template>
-  <header>
-    <div class="wrapper">
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
+  <button class="sidebar-toggle" @click="toggleMenu" type="button">&#5125;</button>
+  <MainHeader />
+  <div class="container">
+    <Sidebar :isOpen="sidebarOpen" />
+    <div :class="['content', { 'content-full': !sidebarOpen }]">
+      <RouterView />
     </div>
-  </header>
-  <RouterView />
+  </div>
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
+<style lang="less">
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
+.container {
+  display: flex;
 }
-
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
-}
-
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
+.content {
+  flex: 1;
+  padding: 30px;
+  max-width: calc(100% - 250px);
+  transition: 0.2s all;
+  transform: translateX(250px);
+  &-full {
+    max-width: 100%;
+    transform: translateX(0);
   }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
+}
+.sidebar-toggle {
+  position: fixed;
+  left: 0;
+  width: 15px;
+  background: var(--primary-color);
+  height: 100%;
+  top: 62px;
+  z-index: 1;
+  cursor: pointer;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@media screen and (@tablet-widths-only) {
 }
 </style>
