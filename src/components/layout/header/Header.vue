@@ -10,7 +10,8 @@
 .header {
   display: flex;
   align-items: center;
-  position: relative;
+  position: sticky;
+  top: 0;
   font-weight: bold;
   padding: 0 20px;
   height: 62px;
