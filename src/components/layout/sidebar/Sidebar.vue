@@ -18,7 +18,8 @@ const links = [
   {
     name: 'Button',
     href: '/button'
-  }
+  },
+  { name: 'Checkbox', href: '/checkbox' }
 ]
 </script>
 
@@ -40,13 +41,11 @@ const links = [
   &-link {
     display: block;
     border-radius: 12px;
-    padding: 10px;
-    border: 2px solid #fff;
-    transition: 0.2s;
+    transition: 0.2s color;
     font-weight: bold;
     margin-bottom: 10px;
     &:hover {
-      border-color: var(--primary);
+      color: var(--primary);
     }
   }
 }

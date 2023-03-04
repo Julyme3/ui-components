@@ -59,10 +59,4 @@ const eventForButton = () => {
   alert('Button was clicked')
 }
 </script>
-<style lang="less" scoped>
-.line {
-  display: flex;
-  flex-wrap: wrap;
-  margin-bottom: 20px;
-}
-</style>
+<style lang="less" scoped></style>
