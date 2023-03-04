@@ -4,13 +4,12 @@
       class="checkbox"
       type="checkbox"
       :name="name"
-      :id="id"
       :value="value"
       :disabled="disabled"
       v-model="localState"
     />
     <span class="checkbox-mark"></span>
-    {{ label }}
+    {{ label || value }}
   </label>
 </template>
 
@@ -18,11 +17,10 @@
 import { computed, defineProps } from 'vue'
 
 interface Props {
-  id: string
   value: string
   disabled?: boolean
   name: string
-  modelValue: boolean
+  modelValue: boolean | string[]
   label?: string
 }
 
