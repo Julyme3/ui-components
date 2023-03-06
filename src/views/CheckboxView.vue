@@ -13,7 +13,7 @@
   <h2 class="heading-2">Checkbox Disabled</h2>
   <div class="line">
     <Checkbox
-      label="Checkbox Disabled"
+      label="Checkbox"
       id="checkboxDisabled"
       name="checkboxDisabled"
       value="I like it"
@@ -26,6 +26,18 @@
     <p>Selected Heroes: {{ selectedHeroes }}</p>
     <CheckboxGroup v-model:selectedValues="selectedHeroes" name="heroes" :options="listOfHeroes" />
   </div>
+  <h2 class="heading-2">Switch</h2>
+  <div class="line line-block">
+    <p>Switch: {{ switchProfessional }}</p>
+    <checkbox
+      label="I'm a professional"
+      id="switch"
+      name="switch"
+      value="I'm a professional"
+      type="switch"
+      v-model="switchProfessional"
+    />
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -36,6 +48,7 @@ import { ref } from 'vue'
 const checkboxActive = ref(true)
 const checkboxActiveDisabled = ref(false)
 const checkboxDisabled = ref(true)
+const switchProfessional = ref(true)
 
 const listOfHeroes = ['Spider Man', 'Batman', 'Tor', 'Loki']
 const selectedHeroes = ref(['Loki', 'Batman'])

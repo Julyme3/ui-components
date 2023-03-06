@@ -1,5 +1,10 @@
 <template>
-  <label class="checkbox-label">
+  <label
+    class="checkbox-label"
+    :class="{
+      'checkbox-switch': type === CheckboxType.switch
+    }"
+  >
     <input
       class="checkbox"
       type="checkbox"
@@ -8,13 +13,19 @@
       :disabled="disabled"
       v-model="localState"
     />
-    <span class="checkbox-mark"></span>
-    {{ label || value }}
+    <span
+      :class="{
+        'checkbox-mark': type === CheckboxType.checkbox,
+        'checkbox-slider': type === CheckboxType.switch
+      }"
+    ></span>
+    <template v-if="type === CheckboxType.checkbox">{{ label || value }}</template>
   </label>
 </template>
 
 <script setup lang="ts">
 import { computed, defineProps } from 'vue'
+import { CheckboxType } from '@/components/checkbox/types'
 
 interface Props {
   value: string
@@ -22,11 +33,13 @@ interface Props {
   name: string
   modelValue: boolean | string[]
   label?: string
+  type?: CheckboxType
 }
 
 const props = withDefaults(defineProps<Props>(), {
   disabled: false,
-  label: ''
+  label: '',
+  type: CheckboxType.checkbox
 })
 
 const emit = defineEmits(['update:modelValue'])
@@ -81,6 +94,46 @@ const localState = computed({
   &:disabled + .checkbox-mark {
     background-color: var(--grey-dark);
     border-color: var(--grey-dark);
+  }
+}
+
+.checkbox-switch {
+  position: relative;
+  width: 48px;
+  height: 28px;
+
+  .checkbox-slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    cursor: pointer;
+    box-shadow: 0px 7px 20px rgba(0, 0, 0, 0.07);
+    border-radius: 16px;
+
+    &:after {
+      position: absolute;
+      content: '';
+      display: block;
+      height: 24px;
+      width: 24px;
+      left: 2px;
+      bottom: 2px;
+      background-color: var(--grey);
+      transition: 0.4s;
+      border-radius: 50%;
+    }
+  }
+
+  .checkbox:checked + .checkbox-slider {
+    &:after {
+      background-color: var(--blue);
+      transform: translateX(20px);
+    }
   }
 }
 </style>
