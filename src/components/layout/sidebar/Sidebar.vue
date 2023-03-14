@@ -19,7 +19,11 @@ const links = [
     name: 'Button',
     href: '/button'
   },
-  { name: 'Checkbox', href: '/checkbox' }
+  { name: 'Checkbox', href: '/checkbox' },
+  {
+    name: 'Radio',
+    href: '/radio'
+  }
 ]
 </script>
 

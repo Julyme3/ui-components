@@ -2,19 +2,12 @@
   <h1 class="heading-1">Checkbox</h1>
   <h2 class="heading-2">Checkbox Active</h2>
   <div class="line">
-    <Checkbox
-      label="Checkbox"
-      id="checkboxActive"
-      name="checkboxActive"
-      value="I like it"
-      v-model="checkboxActive"
-    />
+    <Checkbox label="Checkbox" name="checkboxActive" value="I like it" v-model="checkboxActive" />
   </div>
   <h2 class="heading-2">Checkbox Disabled</h2>
   <div class="line">
     <Checkbox
       label="Checkbox"
-      id="checkboxDisabled"
       name="checkboxDisabled"
       value="I like it"
       :disabled="checkboxDisabled"
@@ -31,7 +24,6 @@
     <p>Switch: {{ switchProfessional }}</p>
     <checkbox
       label="I'm a professional"
-      id="switch"
       name="switch"
       value="I'm a professional"
       type="switch"
