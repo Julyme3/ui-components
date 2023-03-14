@@ -1,25 +1,27 @@
 <template>
+  <input
+    class="checkbox"
+    type="checkbox"
+    :id="value"
+    :name="name"
+    :value="value"
+    :disabled="disabled"
+    v-model="localState"
+  />
   <label
+    :for="value"
     class="checkbox-label"
     :class="{
       'checkbox-switch': type === CheckboxType.switch
     }"
   >
-    <input
-      class="checkbox"
-      type="checkbox"
-      :name="name"
-      :value="value"
-      :disabled="disabled"
-      v-model="localState"
-    />
     <span
       :class="{
         'checkbox-mark': type === CheckboxType.checkbox,
         'checkbox-slider': type === CheckboxType.switch
       }"
     ></span>
-    <template v-if="type === CheckboxType.checkbox">{{ label || value }}</template>
+    {{ label || value }}
   </label>
 </template>
 
@@ -63,7 +65,7 @@ const localState = computed({
     align-items: center;
     user-select: none;
   }
-  &:checked + .checkbox-mark {
+  &:checked + .checkbox-label .checkbox-mark {
     box-shadow: 0px 7px 20px rgba(0, 0, 0, 0.07);
 
     &:after {
@@ -91,49 +93,42 @@ const localState = computed({
     }
   }
 
-  &:disabled + .checkbox-mark {
+  &:disabled + .checkbox-label .checkbox-mark {
     background-color: var(--grey-dark);
     border-color: var(--grey-dark);
   }
 }
 
-.checkbox-switch {
+.checkbox-slider {
   position: relative;
+  display: block;
   width: 48px;
   height: 28px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #fff;
+  cursor: pointer;
+  box-shadow: 0px 7px 20px rgba(0, 0, 0, 0.07);
+  border-radius: 16px;
 
-  .checkbox-slider {
+  &:after {
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #fff;
-    cursor: pointer;
-    box-shadow: 0px 7px 20px rgba(0, 0, 0, 0.07);
-    border-radius: 16px;
-
-    &:after {
-      position: absolute;
-      content: '';
-      display: block;
-      height: 24px;
-      width: 24px;
-      left: 2px;
-      bottom: 2px;
-      background-color: var(--grey);
-      transition: 0.4s;
-      border-radius: 50%;
-    }
+    content: '';
+    display: block;
+    height: 24px;
+    width: 24px;
+    left: 2px;
+    bottom: 2px;
+    background-color: var(--grey);
+    transition: 0.4s;
+    border-radius: 50%;
   }
+}
 
-  .checkbox:checked + .checkbox-slider {
-    &:after {
-      background-color: var(--blue);
-      transform: translateX(20px);
-    }
-  }
+.checkbox:checked + .checkbox-switch .checkbox-slider:after {
+  background-color: var(--blue);
+  transform: translateX(20px);
 }
 </style>
