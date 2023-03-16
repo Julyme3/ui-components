@@ -23,7 +23,7 @@ import { defineProps } from 'vue'
 import { Size } from './types'
 interface Props {
   label?: string
-  color: string
+  color?: string
   disabled?: boolean
   rounded?: boolean
   outlined?: boolean

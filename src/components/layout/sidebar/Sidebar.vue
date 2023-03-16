@@ -23,6 +23,10 @@ const links = [
   {
     name: 'Radio',
     href: '/radio'
+  },
+  {
+    name: 'Progress',
+    href: '/progress'
   }
 ]
 </script>
