@@ -27,6 +27,10 @@ const links = [
   {
     name: 'Progress',
     href: '/progress'
+  },
+  {
+    name: 'Input',
+    href: '/input'
   }
 ]
 </script>
